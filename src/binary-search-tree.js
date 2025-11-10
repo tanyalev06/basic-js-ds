@@ -1,11 +1,6 @@
 const { NotImplementedError } = require("../extensions/index.js");
 
 const { Node } = require("../extensions/list-tree.js");
-
-/**
- * Implement simple binary search tree according to task description
- * using Node from extensions
- */
 class BinarySearchTree {
   constructor() {
     this.ourRoot = null;       //корень дерева
@@ -16,8 +11,7 @@ class BinarySearchTree {
   }
 
   add(data) {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+ 
     this.ourRoot = addWithin(this.ourRoot, data);         //рекурсивная функция: положить в корень то, что вернет функция
 
     function addWithin(node, data) {
@@ -35,8 +29,7 @@ class BinarySearchTree {
   }
 
   has(data) {
-    // throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
     return searchWithin(this.ourRoot, data);
 
     function searchWithin(node, data) {
@@ -56,30 +49,21 @@ class BinarySearchTree {
   }
 
 
-  find(data) {
-    // throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+find(data) {
     return searchWithin(this.ourRoot, data);
 
     function searchWithin(node, data) {
-      if(!node){
-        return null;
-      }
-      if(node.data === data) {
-        return node;
-      }
+        if (!node) return null;
+        if (node.data === data) return node;
+        return data < node.data 
+            ? searchWithin(node.left, data) 
+            : searchWithin(node.right, data);
+    } 
+} 
 
-      if (data < node.data) {
-        return searchWithin(node.left, data);
-      } else {
-        return searchWithin(node.right, data);
-      }
-  }
-}
 
 remove(data) {
-  // throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+
   this.ourRoot = removeNode(this.ourRoot, data);
 
   function removeNode(node, data) {
@@ -119,8 +103,7 @@ remove(data) {
   }
 
   min() {
-    //throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
+
     if (!this.ourRoot) {
       return null;
     }
@@ -133,8 +116,6 @@ remove(data) {
   }
 
   max() {
-    //throw new NotImplementedError("Not implemented");
-    // remove line with error and write your code here
     if (!this.ourRoot) {
       return null;
     }
